@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "SendObjectVB";
+    var E = ViewData["e"] as DemoMVC.Models.Emp;//for ViewData
+}
+@*//through ViewBag*@
+Empno:@ViewBag.e.Empno
+Ename:@ViewBag.e.Ename
+Salary:@ViewBag.e.Salary
+@*//through ViewData*@
+Empno:@E.Empno
+Ename:@E.Ename
+Salary:@E.Salary
+<h2>SendObjectVB</h2>
+

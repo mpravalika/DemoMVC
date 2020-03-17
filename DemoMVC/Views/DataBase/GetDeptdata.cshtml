@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DemoMVC.Models.EMPDATA>
+@{
+    ViewBag.Title = "GetDeptdata";
+}
+<h2>GetDeptdata</h2>
+@using(Html.BeginForm("GetDept","DataBase"))
+{
+<h3>
+    Enter the Deptno @Html.TextBox("txtdeptno",Request["txtdeptno"])
+    <input type="submit" value="getData"  />
+</h3>
+    if (Model != null)
+    {
+    <table>
+    <tr>
+        <td>Empno</td>
+        <td>Ename</td>
+        <td>Job</td>
+        <td>Mgr</td>
+        <td>Hiredate</td>
+        <td>Sal</td>
+        <td>Comm</td>
+        <td>Deptno</td>
+    </tr>
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@i.EMPNO</td>
+            <td>@i.ENAME</td>
+            <td>@i.JOB</td>
+            <td>@i.MGR</td>
+            <td>@i.HIREDATE</td>
+            <td>@i.SAL</td>
+            <td>@i.COMM</td>
+            <td>@i.DEPTNO</td>
+        </tr>
+    }
+</table>
+    }
+}

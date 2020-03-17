@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DemoMVC.Models.EMPDATA>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Radiobtn", "RadioAss"))
+{
+    <table>
+        <tr>
+            <td>@Html.RadioButton("rdb", "Hr", new { onclick = "hr();" })</td>
+            <td>@Html.TextBox("txtstdt", " ", new { @disabled = "true" })</td>
+            <td>@Html.TextBox("txtenddt", " ", new { @disabled = "true" })</td>
+        </tr>
+        <tr>
+            <td>@Html.RadioButton("rdb", "Dept", new { onclick = "dept();" })</td>
+            <td>@Html.DropDownList("ddldept", new SelectList(ViewBag.D, "Deptno", "Dname"), "Select", new { @disabled = "true" })</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Extract" /></td>
+        </tr>
+    </table>
+    if (ViewBag.L != null)
+    {
+        <table>
+            <tr>
+                <td>EMPNO</td>
+                <td>ENAME</td>
+                <td>JOB</td>
+                <td>MGR</td>
+                <td>HIREDATE</td>
+                <td>SAL</td>
+                <td>COMM</td>
+                <td>DEPTNO</td>
+            </tr>
+            @foreach (var i in ViewBag.L)
+            {
+                <tr>
+                    <td>@i.EMPNO</td>
+                    <td>@i.ENAME</td>
+                    <td>@i.JOB</td>
+                    <td>@i.MGR</td>
+                    <td>@i.HIREDATE</td>
+                    <td>@i.SAL</td>
+                    <td>@i.COMM</td>
+                    <td>@i.DEPTNO</td>
+                </tr>
+            }
+        </table>
+    }
+}
+<script>
+    function hr() {
+        document.getElementById("ddldept").disabled = true;
+        document.getElementById("txtstdt").disabled = false;
+        document.getElementById("txtenddt").disabled = false;
+    }
+    function dept() {
+        document.getElementById("ddldept").disabled = false;
+        document.getElementById("txtstdt").disabled = true;
+        document.getElementById("txtenddt").disabled = true;
+    }
+</script>

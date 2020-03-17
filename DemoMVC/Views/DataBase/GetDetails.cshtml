@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DemoMVC.Models.EMPDATA>
+@{
+    ViewBag.Title = "GetDetails";
+}
+<h2>GetDetails</h2>
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>Enter Deptno</td>
+            <td>
+                @Html.DropDownList("ddlDeptno",
+                new SelectList(ViewBag.DL, "Deptno", "Dname",ViewBag.S),
+                "select", new { onblur = "func1();" })
+        </td>
+    </tr>
+    </table>
+    if (Model != null)//Model is Empdata list but ViewBag.L has Deptdata
+    {
+    <table>
+        <tr>
+            <td>Empno</td>
+            <td>Ename</td>
+            <td>Job</td>
+            <td>Mgr</td>
+            <td>Hiredate</td>
+            <td>Sal</td>
+            <td>Comm</td>
+            <td>Deptno</td>
+        </tr>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.EMPNO</td>
+                <td>@i.ENAME</td>
+                <td>@i.JOB</td>
+                <td>@i.MGR</td>
+                <td>@i.HIREDATE</td>
+                <td>@i.SAL</td>
+                <td>@i.COMM</td>
+                <td>@i.DEPTNO</td>
+            </tr>
+        }
+    </table>
+    }
+}
+<script>
+    function func1()
+    {
+        var dno = document.getElementById("ddlDeptno").value;//has deptno of selected dname
+        window.location.href = "/DataBase/sendDept?d=" + dno;
+    }
+</script>
